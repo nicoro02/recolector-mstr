@@ -26,7 +26,18 @@ from pathlib import Path
 
 import pandas as pd
 
-TICKERS = ["MSTR", "COIN", "MARA", "RIOT", "CLSK", "BTC-USD", "SPY"]
+TICKERS = [
+    # complejo bitcoin
+    "MSTR", "COIN", "MARA", "RIOT", "CLSK", "IBIT",
+    # subyacente
+    "BTC-USD",
+    # controles de mercado
+    "SPY", "QQQ", "^VIX",
+    # oro: misma estructura, otro mercado
+    "GLD", "GDX",
+    # ETFs internacionales
+    "EWJ", "EWZ",
+]
 DIR_DATOS = Path(__file__).parent / "datos"
 DIAS = 7                     # el maximo que da Yahoo para velas de 1m
 

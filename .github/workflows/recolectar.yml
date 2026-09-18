@@ -1,0 +1,38 @@
+name: recolectar velas de 1 minuto
+
+on:
+  schedule:
+    # sabados a las 07:00 UTC. Fin de semana para que la ventana de 7 dias
+    # cubra la semana de mercado completa que acaba de terminar.
+    - cron: "0 7 * * 6"
+  workflow_dispatch:        # permite lanzarlo a mano desde la web
+
+permissions:
+  contents: write           # necesario para que el workflow haga commit
+
+jobs:
+  recolectar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - run: python recolector.py
+
+      - name: guardar los datos nuevos
+        run: |
+          git config user.name  "recolector"
+          git config user.email "recolector@users.noreply.github.com"
+          git add datos/
+          if git diff --staged --quiet; then
+            echo "sin cambios, no se hace commit"
+          else
+            git commit -m "datos: recoleccion $(date -u +%Y-%m-%d)"
+            git push
+          fi

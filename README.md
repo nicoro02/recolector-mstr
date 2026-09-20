@@ -6,16 +6,7 @@ guarda cada semana para acumular histórico propio.
 En tres meses hay unos 60 días de mercado, que es lo mínimo para
 investigar la forma del ajuste intradía.
 
-## Puesta en marcha
-
-1. Crea el repo en GitHub y sube estos ficheros.
-2. En Settings → Actions → General → Workflow permissions, marca
-   **Read and write permissions**. Sin eso el workflow no puede
-   guardar los datos.
-3. En la pestaña Actions, lanza `recolectar velas de 1 minuto` a mano
-   una vez para comprobar que funciona.
-
-Después corre solo los sábados a las 07:00 UTC.
+Tickers recogidos: MSTR, COIN, MARA, RIOT, CLSK, IBIT, BTC-USD, SPY, QQQ, VIX, GLD, GDX, EWJ, EWZ.
 
 ## En local
 
